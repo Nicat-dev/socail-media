@@ -1,6 +1,8 @@
 package com.nicat.socailmedia.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,6 +16,7 @@ public class AccountResponse {
     private Long accountId;
     private String fullName;
     private String email;
+    @JsonIgnore
     private String password;
     @ToString.Exclude
     private List<PostResponse> postResponses;

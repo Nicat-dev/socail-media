@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Slf4j
@@ -26,6 +27,8 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
     private final PostService postService;
 
+    @Override
+    @Transactional
     public void create(CreateCommentRequest request){
         final long postId = request.getPostId();
         Post post = postService.findById(postId);
@@ -57,6 +60,22 @@ public class CommentServiceImpl implements CommentService {
         if (comments.isEmpty())
             throw new DomainNotFoundException("no account avaible");
         return comments;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+            if (id==null)
+                throw new MethodNullArgumentException("Id can not be null on deleteById");
+            if (!commentRepository.existsById(id))
+                throw new DomainNotFoundException("Post not found by id : "+id);
+            commentRepository.deleteById(id);
+    }
+
+    @Override
+    public Comment findByAccountId(Long id) {
+        if (id==null)
+            throw new MethodNullArgumentException("Id can n ot be null on findByAccountId");
+        return null;
     }
 
 }

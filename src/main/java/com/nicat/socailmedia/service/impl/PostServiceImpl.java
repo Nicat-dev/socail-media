@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 @Slf4j
 @Service("PostService")
@@ -23,6 +24,8 @@ public class PostServiceImpl implements PostService {
     private final PostMapper postMapper;
     private final AccountService accountService;
 
+    @Override
+    @Transactional
     public void create(CreatePostRequest request){
         final long accountId = request.getAccountId();
         Account account = accountService.findById(accountId);

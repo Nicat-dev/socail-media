@@ -1,7 +1,6 @@
 package com.nicat.socailmedia.controller;
 
-import com.nicat.socailmedia.exception.DomainNotFoundException;
-import com.nicat.socailmedia.exception.MethodNullArgumentException;
+import com.nicat.socailmedia.exception.*;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +31,33 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(MethodNullArgumentException.class)
     public ResponseEntity<Map<String, String>> handleException(MethodNullArgumentException e) {
+        Map<String, String> errorResponse = new HashMap<>();
+
+        errorResponse.put("message", e.getLocalizedMessage());
+        errorResponse.put("status", HttpStatus.BAD_REQUEST.toString());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public ResponseEntity<Map<String, String>> handleException(AuthenticationException e) {
+        Map<String, String> errorResponse = new HashMap<>();
+
+        errorResponse.put("message", e.getLocalizedMessage());
+        errorResponse.put("status", HttpStatus.BAD_REQUEST.toString());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DomainExistException.class)
+    public ResponseEntity<Map<String, String>> handleException(DomainExistException e) {
+        Map<String, String> errorResponse = new HashMap<>();
+
+        errorResponse.put("message", e.getLocalizedMessage());
+        errorResponse.put("status", HttpStatus.BAD_REQUEST.toString());
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(TokenNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleException(TokenNotFoundException e) {
         Map<String, String> errorResponse = new HashMap<>();
 
         errorResponse.put("message", e.getLocalizedMessage());

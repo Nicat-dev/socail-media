@@ -9,4 +9,6 @@ public interface CommentService {
     void create(CreateCommentRequest request);
     Comment findById(Long id);
     List<Comment> findAll();
+    void deleteById(Long id);
+    Comment findByAccountId(Long id);
 }

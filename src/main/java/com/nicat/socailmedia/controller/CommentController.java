@@ -1,8 +1,6 @@
 package com.nicat.socailmedia.controller;
 
-import com.nicat.socailmedia.dto.request.CreateAccountRequest;
 import com.nicat.socailmedia.dto.request.CreateCommentRequest;
-import com.nicat.socailmedia.dto.response.AccountResponse;
 import com.nicat.socailmedia.dto.response.ApiMessage;
 import com.nicat.socailmedia.dto.response.CommentResponse;
 import com.nicat.socailmedia.mapper.CommentMapper;
